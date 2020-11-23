@@ -1,0 +1,21 @@
+{
+  "name": "web-application",
+  "version": "1.0.0",
+  "description": "javascript wep-application",
+  "main": "wpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Greatatea/Web-application.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Greatatea/Web-application/issues"
+  },
+  "homepage": "https://github.com/Greatatea/Web-application#readme",
+  "private" :"true"
+}
