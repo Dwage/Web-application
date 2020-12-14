@@ -17,6 +17,7 @@
   }
 
   .row-info {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +33,7 @@
   }
 
   .column {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,12 +58,54 @@
     white-space: nowrap;
     outline: none;
 
-
     &.selected {
       border: none;
       outline: 2px solid #3c74ff;
       z-index: 2;
     }
   }
+  .col-resize,
+  .row-resize { z-index: 1000;
+    
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    right: 0;
+    background: #3c74ff;
+    &:hover {
+      opacity: 1!important;
+    }
+  }
 
+  .col-resize {
+    top: 0;
+
+    width: 4px;
+
+    &:hover {
+      cursor: col-resize;}
+      
+      
+  }
+
+  .row-resize {
+    left: 0;
+    height: 4px;
+    &:hover {
+      cursor: row-resize;
+    }
+    
+  }
+
+  .resize {
+    position: absolute;
+    top: 0;
+    width:5px; height:50px; bottom:0; 
+    opacity:1;
+    right:0; background: #3c74ff;
+    &:hover {
+      cursor: col-resize; opacity: 1; transition: 0s;
+    }
+  }
 }
+
