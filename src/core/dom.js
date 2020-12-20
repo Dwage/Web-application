@@ -49,7 +49,6 @@ class Dom {
   getCords() {
     return this.$el.getBoundingClientRect()
   }
-
   get data() {
     return this.$el.dataset
   }
@@ -58,6 +57,40 @@ class Dom {
 
     return this.$el.querySelectorAll(selector)
   }
+  txtget(text) {
+    if (typeof text === 'string') {
+    this.$el.textContent = text
+    return this  
+  }
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim()
+    }
+
+  return this.$el.textContent.trim()}
+  focus() {
+    this.$el.focus()
+    return this
+  }
+  
+  
+  
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':'); return {row: +parsed[0], col: +parsed[1]}
+    }
+    return this.data.id
+        
+
+  } 
+  findOneEl(selector) {
+    return $(this.$el.querySelector(selector))
+  }
+  
+  addClass(className) {
+    return this.$el.classList.add(className)}
+
+  removeClass(className) {
+    return this.$el.classList.remove(className)}
   css(styles = {}) {
     Object.keys(styles).forEach(key => {this.$el.style[key] = styles[key]})
   }

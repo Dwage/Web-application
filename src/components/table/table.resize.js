@@ -14,10 +14,12 @@ export function resizeHandler($root, event) {
   document.onmousemove = (e) => {
     if (type === "col") {
       const delta = e.pageX - coords.right;
-      console.log("a");
+      
       value = coords.width + delta;
 
       $resizer.css({ right: -delta + "px" });
+    
+    
     } else if (type === "row") {
       const delta = e.pageY - coords.bottom;
       value = coords.height + delta;
@@ -31,7 +33,7 @@ export function resizeHandler($root, event) {
 
         cells.forEach((el) => (el.style.width = value + "px"));
         $resizer.css({ opacity: 0, bottom: 0, right: 0 });
-      } else if (type === "row") {
+      } else {
         $d.css({ height: value + "px" });
         cells.forEach((el) => (el.style.height = value + "px"));
 
@@ -42,5 +44,5 @@ export function resizeHandler($root, event) {
       document.onmouseup = null;
     };
   };
-  //document.onmouseup = () => {document.onmousemove = null;}
+  
 }
