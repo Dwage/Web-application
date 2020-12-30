@@ -65,15 +65,16 @@
     }
   }
   .col-resize,
-  .row-resize { z-index: 1000;
-    
+  .row-resize {
+    z-index: 1000;
+
     position: absolute;
     bottom: 0;
     opacity: 0;
     right: 0;
     background: #3c74ff;
     &:hover {
-      opacity: 1!important;
+      opacity: 1 !important;
     }
   }
 
@@ -83,9 +84,8 @@
     width: 4px;
 
     &:hover {
-      cursor: col-resize;}
-      
-      
+      cursor: col-resize;
+    }
   }
 
   .row-resize {
@@ -94,18 +94,21 @@
     &:hover {
       cursor: row-resize;
     }
-    
   }
 
   .resize {
     position: absolute;
     top: 0;
-    width:5px; height:50px; bottom:0; 
-    opacity:1;
-    right:0; background: #3c74ff;
+    width: 5px;
+    height: 50px;
+    bottom: 0;
+    opacity: 1;
+    right: 0;
+    background: #3c74ff;
     &:hover {
-      cursor: col-resize; opacity: 1; transition: 0s;
+      cursor: col-resize;
+      opacity: 1;
+      transition: 0s;
     }
   }
 }
-
