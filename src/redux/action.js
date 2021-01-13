@@ -28,3 +28,8 @@ export function changeTitle(data) {
     data,
   };
 }
+export function updateDate() {
+  return {
+    type: "UPDATE_DATE"
+  }
+}
