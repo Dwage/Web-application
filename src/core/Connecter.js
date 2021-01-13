@@ -1,33 +1,29 @@
 export class Emitter {
   constructor() {
-    this.listeners = {}
+    this.listeners = {};
   }
   //dispatch, fire, trigger // Если есть слушатели, то уведомляем их
   emit(event, ...args) {
-
-
-
     if (!Array.isArray(this.listeners[event])) {
-      return false
+      return false;
     }
-    this.listeners[event].forEach(listener => {
-      listener(...args)
-    })
-    return true
+    this.listeners[event].forEach((listener) => {
+      listener(...args);
+    });
+    return true;
   }
-
 
   subscribe(event, fn) {
-    this.listeners[event] = this.listeners[event] || []
+    this.listeners[event] = this.listeners[event] || [];
 
-    this.listeners[event].push(fn) 
+    this.listeners[event].push(fn);
     return () => {
-      this.listeners[event] = 
-        this.listeners[event].filter( listener => listener !== fn)
-    }
-
+      this.listeners[event] = this.listeners[event].filter(
+        (listener) => listener !== fn
+      );
+    };
   }
 }
-const emitter = new Emitter()
+const emitter = new Emitter();
 
-emitter.subscribe()
+emitter.subscribe();

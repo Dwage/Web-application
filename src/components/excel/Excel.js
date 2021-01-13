@@ -1,41 +1,52 @@
-import {$} from '@core/dom' 
+import { $ } from "@core/dom";
+import { Emitter } from "@core/Connecter";
+import { preventDefault } from '@core/utils'          
 
-import {Emitter} from '@core/Connecter'
+import { StoreSubscriber } from "@core/StoreSubscriber";
+import { updateDate } from "@/redux/action"
+
+
+
 
 export class Excel {
-  constructor(selector, options) {
-    this.$el = $(selector)
-    this.components = options.components || []
-    this.emitter = new Emitter()
+  constructor(options) {
+    
+    this.components = options.components || [];
+    this.store = options.store;
+    this.emitter = new Emitter();
+    this.subscriber = new StoreSubscriber(this.store);
   }
-
-  getRoot() { 
-    const componentOptions = {emitter: this.emitter}
-    const $root = $.create('div', 'excel')
-    this.components = this.components.map(Component => {
-      const $el = $.create('div', Component.className)
-      const component = new Component($el, componentOptions)
-      
-      if (component.name) {window['c' + component.name] = component}
-      $el.html(component.toHTML())
-      $root.append($el)
-      
-      
-      return component 
-      
-      
-    })
-
-    return $root
-  }
-  render() {
-    this.$el.append(this.getRoot())
+  getRoot() {
   
-    this.components.forEach(component => component.init())  
+    const componentOptions = { emitter: this.emitter, store: this.store };
+    const $root = $.create("div", "excel");
+    this.components = this.components.map((Component) => {
+      const $el = $.create("div", Component.className);
+      const component = new Component($el, componentOptions);
+
+      if (component.name) {
+        window["c" + component.name] = component;
+      }
+      $el.html(component.toHTML());
+      $root.append($el);
+
+      return component;
+    });
+    return $root;
+  }
+  init() {
+    if (process.env.NODE_ENV === 'production') {
+      document.addEventListener('contextmenu', preventDefault)
+    }
+
+    this.store.dispatch(updateDate())
+    this.subscriber.subscribeComponents(this.components);
+    this.components.forEach((component) => component.init());
   }
   destroy() {
-    
+    this.subscriber.unsubscribeFromStore();
 
-    this.components.forEach(component => component.destroy())
+    this.components.forEach((component) => component.destroy());
+    document.removeEventListener('contextmenu', preventDefault)
   }
 }
