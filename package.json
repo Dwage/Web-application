@@ -23,7 +23,11 @@
     "url": "https://github.com/Greatatea/Web-application/issues"
   },
   "homepage": "https://github.com/Greatatea/Web-application#readme",
+
   "private": false,
+
+  
+
   "browserslist": "> 0.25%, not dead",
   "devDependencies": {
     "@babel/core": "^7.8.4",

@@ -50,3 +50,4 @@ export class Excel {
     document.removeEventListener('contextmenu', preventDefault)
   }
 }
+
